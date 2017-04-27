@@ -18,12 +18,6 @@ module.exports = class extends Generator {
         message: 'Your project name',
         store  : true,
         default: this.appname // Default to current folder name
-      },
-      {
-        type   : 'confirm',
-        name   : 'someAnswer',
-        message: 'Shall we begin?',
-        default: true
       }
     ];
 

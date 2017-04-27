@@ -5,7 +5,7 @@ import {routerConfig} from './index.route';
 import {runBlock} from './index.run';
 import {MainController} from './main/main.controller';
 import {HomeController} from './controllers/home/home.controller';
-/* Controller class injection target */
+/* controller class injection target */
 import {GithubContributorService} from '../app/components/githubContributor/githubContributor.service';
 import {WebDevTecService} from '../app/components/webDevTec/webDevTec.service';
 import {NavbarDirective} from '../app/components/navbar/navbar.directive';
@@ -21,6 +21,6 @@ angular.module('<%= appNameDashed %>', ['ngAnimate', 'ngTouch', 'ngSanitize', 'n
 	.service('webDevTec', WebDevTecService)
 	.controller('MainController', MainController)
 	.controller('HomeController', HomeController)
-	/* Controller injection target */
+	/* controller injection target */
 	.directive('acmeNavbar', NavbarDirective)
 	.directive('acmeMalarkey', MalarkeyDirective);

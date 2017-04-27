@@ -41,20 +41,37 @@ module.exports = class extends Generator {
       this.destinationPath(`${pathPrefix}/${nameDashed}.html`),
       context);
 
+    this.fs.copyTpl(
+      this.templatePath('target.scss'),
+      this.destinationPath(`${pathPrefix}/${nameDashed}.scss`),
+      context);
+
     let modulePath = `${this.appPath}/index.module.js`;
-    let targetStr = '/* Controller injection target */';
-    let classTargetStr = '/* Controller class injection target */';
+    let routePath = `${this.appPath}/index.route.js`;
+    let crtlTarget = '/* controller injection target */';
+    let classTarget = '/* controller class injection target */';
+    let routeTarget = '/* route injection target */';
+
     let moduleContent = this.fs.read(modulePath);
+    let routeContent = this.fs.read(routePath);
 
     moduleContent = moduleContent.replace(
-      targetStr,
-      `.controller('${namePascal}Controller', ${namePascal}Controller)\n\t${targetStr}`
+      crtlTarget,
+      `.controller('${namePascal}Controller', ${namePascal}Controller)\n\t${crtlTarget}`
     );
     moduleContent = moduleContent.replace(
-      classTargetStr,
-      `import {${namePascal}Controller} from './controllers/${nameDashed}/${nameDashed}.controller';\n${classTargetStr}`
+      classTarget,
+      `import {${namePascal}Controller} from './controllers/${nameDashed}/${nameDashed}.controller';\n${classTarget}`
     );
 
-    this.fs.write(modulePath,moduleContent)
+    routeContent = routeContent.replace(routeTarget,`.state('main.${nameDashed}', {
+			url         : '${nameDashed}',
+			templateUrl : 'app/controllers/${nameDashed}/${nameDashed}.html',
+			controller  : '${namePascal}Controller',
+			controllerAs: 'vm'
+		})\n\t\t${routeTarget}`);
+
+    this.fs.write(modulePath,moduleContent);
+    this.fs.write(routePath,routeContent);
   }
 };
