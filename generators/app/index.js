@@ -1,7 +1,8 @@
 'use strict';
-const Generator = require('yeoman-generator');
-const chalk = require('chalk');
-const yosay = require('yosay');
+const Generator  = require('yeoman-generator');
+const chalk      = require('chalk');
+const yosay      = require('yosay');
+const changeCase = require('change-case');
 
 module.exports = class extends Generator {
   prompting() {
@@ -10,12 +11,21 @@ module.exports = class extends Generator {
       'Welcome to the astonishing ' + chalk.red('generator-ng-gen') + ' generator!'
     ));
 
-    const prompts = [{
-      type: 'confirm',
-      name: 'someAnswer',
-      message: 'Would you like to enable this option?',
-      default: true
-    }];
+    const prompts = [
+      {
+        type   : 'input',
+        name   : 'name',
+        message: 'Your project name',
+        store  : true,
+        default: this.appname // Default to current folder name
+      },
+      {
+        type   : 'confirm',
+        name   : 'someAnswer',
+        message: 'Shall we begin?',
+        default: true
+      }
+    ];
 
     return this.prompt(prompts).then(props => {
       // To access props later use this.props.someAnswer;
@@ -24,13 +34,26 @@ module.exports = class extends Generator {
   }
 
   writing() {
+    const templates = [
+      'bower.json'
+    ];
+
     this.fs.copy(
-      this.templatePath('dummyfile.txt'),
-      this.destinationPath('dummyfile.txt')
+      this.templatePath(`./**/!(${templates.join('|')})`),
+      this.destinationPath('./')
+    );
+
+    this.fs.copyTpl(
+      this.templatePath(`./**/+(${templates.join('|')})`),
+      this.destinationPath('./'),
+      {
+        appName     : this.props.appName,
+        appNameCamel:
+      }
     );
   }
 
   install() {
-    this.installDependencies();
+    //this.installDependencies();
   }
 };
