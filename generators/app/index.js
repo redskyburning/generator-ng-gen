@@ -56,8 +56,6 @@ module.exports = class extends Generator {
       appNameCamel : changeCase.camelCase(this.appName)
     };
 
-    this.log(context);
-
     this.fs.copyTpl(
       this.templatePath(`./**/+(${templates.join('|')})`),
       this.destinationPath('./'),
@@ -66,6 +64,6 @@ module.exports = class extends Generator {
   }
 
   install() {
-    //this.installDependencies();
+    this.installDependencies();
   }
 };
