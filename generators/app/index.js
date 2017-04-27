@@ -30,12 +30,19 @@ module.exports = class extends Generator {
     return this.prompt(prompts).then(props => {
       // To access props later use this.props.someAnswer;
       this.props = props;
+      this.appName = props.name || 'app name';
     });
   }
 
   writing() {
     const templates = [
-      'bower.json'
+      'bower.json',
+      'karma.conf.js',
+      'package.json',
+      'index.config.js',
+      'index.module.js',
+      'index.html',
+      'build.js'
     ];
 
     this.fs.copy(
@@ -43,13 +50,18 @@ module.exports = class extends Generator {
       this.destinationPath('./')
     );
 
+    let context = {
+      appName      : this.appName,
+      appNameDashed: changeCase.paramCase(this.appName),
+      appNameCamel : changeCase.camelCase(this.appName)
+    };
+
+    this.log(context);
+
     this.fs.copyTpl(
       this.templatePath(`./**/+(${templates.join('|')})`),
       this.destinationPath('./'),
-      {
-        appName     : this.props.appName,
-        appNameCamel:
-      }
+      context
     );
   }
 
