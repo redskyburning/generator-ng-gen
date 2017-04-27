@@ -1,0 +1,9 @@
+{
+  "generator-node": {
+    "promptValues": {
+      "authorName": "Ben Webb",
+      "authorEmail": "ben@redskyburning.com",
+      "authorUrl": ""
+    }
+  }
+}
