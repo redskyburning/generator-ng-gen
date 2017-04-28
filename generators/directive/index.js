@@ -9,7 +9,7 @@ module.exports = class extends Subgenerator {
 
   prompting() {
     this.argument('name', {type: String, required: true});
-    this.init(this.options.name,'controller');
+    this.init(this.options.name,'directive');
   }
 
   writing() {
@@ -29,14 +29,5 @@ module.exports = class extends Subgenerator {
       this.context);
 
     this.injectIntoModule();
-
-    let routeContent  = this.fs.read(this.paths.route);
-    routeContent = routeContent.replace(this.routeTarget, `.state('main.${this.names.dashed}', {
-			url         : '${this.names.dashed}',
-			templateUrl : 'app/${this.names.typePlural}/${this.names.dashed}/${this.names.dashed}.html',
-			controller  : '${this.names.instance}',
-			controllerAs: 'vm'
-		})\n\t\t${this.routeTarget}`);
-    this.fs.write(this.paths.route, routeContent);
   }
 };
