@@ -1,77 +1,61 @@
 'use strict';
-const Generator  = require('yeoman-generator');
-const chalk      = require('chalk');
-const yosay      = require('yosay');
-const changeCase = require('change-case');
 
-module.exports = class extends Generator {
+const Subgenerator = require('./../../common/subgenerator');
+
+module.exports = class extends Subgenerator {
   constructor(args, opts) {
     super(args, opts);
-
-    this.appPath = 'src/app';
   }
 
   prompting() {
-    // Have Yeoman greet the user.
-    this.log(yosay(
-      'Time to make a ' + chalk.green('controller') + ' wot wot!'
-    ));
-
     this.argument('name', {type: String, required: true});
+    this.init(this.options.name,'controller');
   }
 
   writing() {
-    let name    = this.options.name;
-    let nameDashed = changeCase.paramCase(name);
-    let namePascal = changeCase.pascalCase(name);
-    let pathPrefix = `${this.appPath}/controllers/${nameDashed}`;
-    let context = {
-      name      : name,
-      nameDashed: nameDashed,
-      namePascal: namePascal
+    let context    = {
+      name      : this.names.raw,
+      nameDashed: this.names.dashed,
+      namePascal: this.names.pascal
     };
 
     this.fs.copyTpl(
       this.templatePath('target.controller.js'),
-      this.destinationPath(`${pathPrefix}/${nameDashed}.controller.js`),
+      this.destinationPath(`${this.paths.prefix}/${this.names.dashed}.controller.js`),
       context);
 
     this.fs.copyTpl(
       this.templatePath('target.html'),
-      this.destinationPath(`${pathPrefix}/${nameDashed}.html`),
+      this.destinationPath(`${this.paths.prefix}/${this.names.dashed}.html`),
       context);
 
     this.fs.copyTpl(
       this.templatePath('target.scss'),
-      this.destinationPath(`${pathPrefix}/${nameDashed}.scss`),
+      this.destinationPath(`${this.paths.prefix}/${this.names.dashed}.scss`),
       context);
 
-    let modulePath = `${this.appPath}/index.module.js`;
-    let routePath = `${this.appPath}/index.route.js`;
-    let crtlTarget = '/* controller injection target */';
-    let classTarget = '/* controller class injection target */';
-    let routeTarget = '/* route injection target */';
-
-    let moduleContent = this.fs.read(modulePath);
-    let routeContent = this.fs.read(routePath);
+    /*let moduleContent = this.fs.read(this.paths.module);
 
     moduleContent = moduleContent.replace(
-      crtlTarget,
-      `.controller('${namePascal}Controller', ${namePascal}Controller)\n\t${crtlTarget}`
+      this.targets.ctrl,
+      `.controller('${this.names.class}', ${this.names.class})\n\t${this.targets.ctrl}`
     );
     moduleContent = moduleContent.replace(
-      classTarget,
-      `import {${namePascal}Controller} from './controllers/${nameDashed}/${nameDashed}.controller';\n${classTarget}`
+      this.targets.ctrlClass,
+      `import {${this.names.class}} from './controllers/${this.names.dashed}/${this.names.dashed}.controller';\n${this.targets.ctrlClass}`
     );
 
-    routeContent = routeContent.replace(routeTarget,`.state('main.${nameDashed}', {
-			url         : '${nameDashed}',
-			templateUrl : 'app/controllers/${nameDashed}/${nameDashed}.html',
-			controller  : '${namePascal}Controller',
+    this.fs.write(this.paths.module, moduleContent);*/
+
+    this.injectIntoModule();
+
+    let routeContent  = this.fs.read(this.paths.route);
+    routeContent = routeContent.replace(this.targets.route, `.state('main.${this.names.dashed}', {
+			url         : '${this.names.dashed}',
+			templateUrl : 'app/${this.names.typePlural}/${this.names.dashed}/${this.names.dashed}.html',
+			controller  : '${this.names.class}',
 			controllerAs: 'vm'
-		})\n\t\t${routeTarget}`);
-
-    this.fs.write(modulePath,moduleContent);
-    this.fs.write(routePath,routeContent);
+		})\n\t\t${this.targets.route}`);
+    this.fs.write(this.paths.route, routeContent);
   }
 };
