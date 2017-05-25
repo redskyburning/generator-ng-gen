@@ -44,6 +44,11 @@ module.exports = class extends Generator {
       this.destinationPath('./')
     );
 
+    this.fs.copy(
+      this.templatePath(`./**/.*!(${templates.join('|')})`),
+      this.destinationPath('./')
+    );
+
     let context = {
       appName      : this.appName,
       appNameDashed: changeCase.paramCase(this.appName),
