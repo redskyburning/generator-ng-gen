@@ -67,5 +67,9 @@ module.exports = class extends Generator {
 
   install() {
     this.installDependencies();
+    // TODO : This is really handy, but should be made optional
+    this.spawnCommandSync('git', ['init']);
+    this.spawnCommandSync('git', ['add', '--all']);
+    this.spawnCommandSync('git', ['commit', '-m', 'generator output', '--quiet']);
   }
 };
