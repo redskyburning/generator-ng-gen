@@ -49,6 +49,7 @@ module.exports = class Subgenerator extends Generator {
     this.context = {
       name      : this.names.raw,
       nameDashed: this.names.dashed,
+      nameCamel: this.names.camel,
       namePascal: this.names.pascal
     };
   }
