@@ -1,5 +1,5 @@
 describe('service <%= nameCamel %>Service', () => {
-	beforeEach(angular.mock.module('test'));
+	beforeEach(angular.mock.module('<%= appNameDashed %>'));
 
 	it('should be registered', inject(<%= nameCamel %>Service => {
 		expect(<%= nameCamel %>Service).not.toEqual(null);

@@ -34,7 +34,7 @@ module.exports = class Subgenerator extends Generator {
       pascal    : this.changeCase.pascalCase(name),
       class     : this.changeCase.pascalCase(name + ' ' + type),
       instance  : this.changeCase.camelCase(instanceName),
-      typePlural: this.pluralize(this.type, 2)
+      typePlural: this.pluralize(this.type, 2),
     };
 
     this.baseDir = this.type === 'controller' ? 'controllers' : 'components';
@@ -46,11 +46,14 @@ module.exports = class Subgenerator extends Generator {
 
     this.routeTarget = this.getTargetString('route');
 
+    let appName = this.config.get('appName') || 'defaultAppName';
+
     this.context = {
       name      : this.names.raw,
       nameDashed: this.names.dashed,
       nameCamel: this.names.camel,
-      namePascal: this.names.pascal
+      namePascal: this.names.pascal,
+      appNameDashed: this.changeCase.paramCase(appName)
     };
   }
 

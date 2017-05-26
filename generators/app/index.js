@@ -60,6 +60,9 @@ module.exports = class extends Generator {
       this.destinationPath('./'),
       context
     );
+
+    this.config.set('appName',this.appName);
+    this.config.save();
   }
 
   install() {
