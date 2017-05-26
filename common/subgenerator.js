@@ -53,13 +53,13 @@ module.exports = class Subgenerator extends Generator {
     };
   }
 
-  injectIntoModule() {
+  injectIntoModule(classStyleInstance = false) {
     let target      = this.type;
     let classTarget = `${this.type} import`;
 
     let moduleContent = this.fs.read(this.paths.module)
       .replace(this.getTargetString(target),
-        `.${this.type}('${this.names.instance}', ${this.names.class})\n\t${this.getTargetString(target)}`)
+        `.${this.type}('${classStyleInstance ? this.names.class : this.names.instance}', ${this.names.class})\n\t${this.getTargetString(target)}`)
       .replace(this.getTargetString(classTarget),
         `import {${this.names.class}} from './${this.baseDir}/${this.names.dashed}/${this.names.dashed}.${this.type}';\n${this.getTargetString(classTarget)}`);
 

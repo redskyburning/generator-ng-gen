@@ -28,7 +28,7 @@ module.exports = class extends Subgenerator {
       this.destinationPath(`${this.paths.prefix}/${this.names.dashed}.scss`),
       this.context);
 
-    this.injectIntoModule();
+    this.injectIntoModule(true);
 
     let routeContent  = this.fs.read(this.paths.route);
     routeContent = routeContent.replace(this.routeTarget, `.state('main.${this.names.dashed}', {
