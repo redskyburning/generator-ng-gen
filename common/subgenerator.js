@@ -25,14 +25,16 @@ module.exports = class Subgenerator extends Generator {
     this.type = type.toLowerCase();
 
     let shortInstances = ['directive','constant'];
+    let camelImports = ['constant'];
     let instanceName = (shortInstances.indexOf(type) === -1) ? `${name} ${type}` : name;
+    let importName = (camelImports.indexOf(type) === -1) ? this.changeCase.pascalCase(`${name} ${type}`) : this.changeCase.camelCase(`${name} ${type}`);
 
     this.names = {
       raw       : name,
       dashed    : this.changeCase.paramCase(name),
       camel     : this.changeCase.camelCase(name),
       pascal    : this.changeCase.pascalCase(name),
-      class     : this.changeCase.pascalCase(name + ' ' + type),
+      class     : importName,
       instance  : this.changeCase.camelCase(instanceName),
       typePlural: this.pluralize(this.type, 2),
     };

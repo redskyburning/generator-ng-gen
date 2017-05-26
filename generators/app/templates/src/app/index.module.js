@@ -5,6 +5,7 @@ import {routerConfig} from './index.route';
 import {runBlock} from './index.run';
 import {MainController} from './main/main.controller';
 import {HomeController} from './controllers/home/home.controller';
+/* constant import injection target */
 /* controller import injection target */
 /* service import injection target */
 /* directive import injection target */
@@ -15,6 +16,7 @@ angular.module('<%= appNameDashed %>', ['ngAnimate', 'ngTouch', 'ngSanitize', 'n
 	.config(config)
 	.config(routerConfig)
 	.run(runBlock)
+	/* constant injection target */
 	/* service injection target */
 	/* directive injection target */
 	.controller('HomeController', HomeController)

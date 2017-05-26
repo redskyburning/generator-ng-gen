@@ -2,12 +2,12 @@ describe('service <%= nameCamel %>Service', () => {
 	beforeEach(angular.mock.module('<%= appNameDashed %>'));
 
 	it('should be registered', inject(<%= nameCamel %>Service => {
-		expect(<%= nameCamel %>Service).not.toEqual(null);
+		expect(<%= nameCamel %>Service).toEqual(jasmine.anything());
 	}));
 
 	describe('foo variable', () => {
 		it('should exist', inject(<%= nameCamel %>Service => {
-			expect(<%= nameCamel %>Service.foo).not.toEqual(null);
+			expect(<%= nameCamel %>Service.foo).toEqual(jasmine.anything());
 		}));
 
 		it('should default to "bar"', inject(<%= nameCamel %>Service => {
