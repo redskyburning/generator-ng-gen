@@ -62,12 +62,15 @@ module.exports = class Subgenerator extends Generator {
   injectIntoModule(classStyleInstance = false) {
     let target      = this.type;
     let classTarget = `${this.type} import`;
+    let instanceName = (this.type === 'provider') ? `${this.names.camel}Service` : classStyleInstance ? this.names.class : this.names.instance;
+    let className = (this.type === 'provider') ? `${this.names.pascal}ServiceProvider` : this.names.class;
+
 
     let moduleContent = this.fs.read(this.paths.module)
       .replace(this.getTargetString(target),
-        `.${this.type}('${classStyleInstance ? this.names.class : this.names.instance}', ${this.names.class})\n\t${this.getTargetString(target)}`)
+        `.${this.type}('${instanceName}', ${className})\n\t${this.getTargetString(target)}`)
       .replace(this.getTargetString(classTarget),
-        `import {${this.names.class}} from './${this.baseDir}/${this.names.dashed}/${this.names.dashed}.${this.type}';\n${this.getTargetString(classTarget)}`);
+        `import {${className}} from './${this.baseDir}/${this.names.dashed}/${this.names.dashed}.${this.type}';\n${this.getTargetString(classTarget)}`);
 
     this.fs.write(this.paths.module, moduleContent);
   }

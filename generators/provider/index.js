@@ -14,6 +14,11 @@ module.exports = class extends Subgenerator {
 
   writing() {
     this.fs.copyTpl(
+      this.templatePath(`target.service.js`),
+      this.destinationPath(`${this.paths.prefix}/${this.names.dashed}.service.js`),
+      this.context);
+
+    this.fs.copyTpl(
       this.templatePath(`target.${this.type}.js`),
       this.destinationPath(`${this.paths.prefix}/${this.names.dashed}.${this.type}.js`),
       this.context);

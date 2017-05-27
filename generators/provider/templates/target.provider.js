@@ -2,9 +2,7 @@ import {<%= namePascal %>Service} from './<%= nameDashed %>.service';
 
 export class <%= namePascal %>ServiceProvider {
 	constructor() {
-		this.config = {
-			foo : 'default'
-		};
+		this.config = 'default';
 	}
 
 	setConfig(config) {
