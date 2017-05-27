@@ -8,6 +8,8 @@ import {HomeController} from './controllers/home/home.controller';
 /* constant import injection target */
 /* controller import injection target */
 /* service import injection target */
+/* factory import injection target */
+/* provider import injection target */
 /* directive import injection target */
 
 angular.module('<%= appNameDashed %>', ['ngAnimate', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ui.router', 'ui.bootstrap'])
@@ -18,6 +20,8 @@ angular.module('<%= appNameDashed %>', ['ngAnimate', 'ngTouch', 'ngSanitize', 'n
 	.run(runBlock)
 	/* constant injection target */
 	/* service injection target */
+	/* factory injection target */
+	/* provider injection target */
 	/* directive injection target */
 	.controller('HomeController', HomeController)
 	/* controller injection target */
