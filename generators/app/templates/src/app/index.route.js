@@ -4,7 +4,7 @@ export function routerConfig($stateProvider, $urlRouterProvider) {
 		.state('main', {
 			url         : '/',
 			abstract    : true,
-			templateUrl : 'app/main/main.html',
+			templateUrl : 'app/controllers/main/main.html',
 			controller  : 'MainController',
 			controllerAs: 'main'
 		})
