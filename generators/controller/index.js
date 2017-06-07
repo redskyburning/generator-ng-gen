@@ -19,6 +19,11 @@ module.exports = class extends Subgenerator {
       this.context);
 
     this.fs.copyTpl(
+      this.templatePath(`target.${this.type}.spec.js`),
+      this.destinationPath(`${this.paths.prefix}/${this.names.dashed}.${this.type}.spec.js`),
+      this.context);
+
+    this.fs.copyTpl(
       this.templatePath('target.html'),
       this.destinationPath(`${this.paths.prefix}/${this.names.dashed}.html`),
       this.context);
