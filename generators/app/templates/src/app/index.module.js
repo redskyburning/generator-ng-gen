@@ -6,6 +6,8 @@ import {runBlock} from './index.run';
 import {MainController} from './controllers/main/main.controller';
 import {HomeController} from './controllers/home/home.controller';
 /* constant import injection target */
+import {StyleGuideController} from './controllers/style-guide/style-guide.controller';
+import {StyleGuideModalController} from './controllers/style-guide-modal/style-guide-modal.controller';
 /* controller import injection target */
 /* service import injection target */
 /* factory import injection target */
@@ -23,5 +25,7 @@ angular.module('<%= appNameDashed %>', ['ngAnimate', 'ngTouch', 'ngSanitize', 'n
 	/* provider injection target */
 	/* directive injection target */
 	.controller('HomeController', HomeController)
+	.controller('StyleGuideController', StyleGuideController)
+	.controller('StyleGuideModalController', StyleGuideModalController)
 	/* controller injection target */
 	.controller('MainController', MainController);
