@@ -1,15 +1,15 @@
 'use strict';
 
-var path = require('path');
-var gulp = require('gulp');
-var conf = require('./conf');
+let path = require('path');
+let gulp = require('gulp');
+let conf = require('./conf');
 
-var browserSync = require('browser-sync');
+let browserSync = require('browser-sync');
 
-var $ = require('gulp-load-plugins')();
+let $ = require('gulp-load-plugins')();
 
-var wiredep = require('wiredep').stream;
-var _ = require('lodash');
+let wiredep = require('wiredep').stream;
+let _ = require('lodash');
 
 gulp.task('styles-reload', ['styles'], function() {
   return buildStyles()
@@ -20,18 +20,19 @@ gulp.task('styles', function() {
   return buildStyles();
 });
 
-var buildStyles = function() {
-  var sassOptions = {
+let buildStyles = function() {
+  let sassOptions = {
     outputStyle: 'expanded',
     precision: 10
   };
 
-  var injectFiles = gulp.src([
+  let injectFiles = gulp.src([
     path.join(conf.paths.src, '/app/**/*.scss'),
-    path.join('!' + conf.paths.src, '/app/index.scss')
+    path.join('!' + conf.paths.src, '/app/index.scss'),
+    path.join('!' + conf.paths.src, '/app/global-styles/**/*.scss')
   ], { read: false });
 
-  var injectOptions = {
+  let injectOptions = {
     transform: function(filePath) {
       filePath = filePath.replace(conf.paths.src + '/app/', '');
       return '@import "' + filePath + '";';

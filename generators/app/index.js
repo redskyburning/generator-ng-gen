@@ -36,11 +36,18 @@ module.exports = class extends Generator {
       'index.config.js',
       'index.module.js',
       'index.html',
+      'home.controller.spec.js',
+      'main.controller.spec.js',
       'build.js'
     ];
 
     this.fs.copy(
       this.templatePath(`./**/!(${templates.join('|')})`),
+      this.destinationPath('./')
+    );
+
+    this.fs.copy(
+      this.templatePath(`./**/.*!(${templates.join('|')})`),
       this.destinationPath('./')
     );
 
@@ -55,9 +62,16 @@ module.exports = class extends Generator {
       this.destinationPath('./'),
       context
     );
+
+    this.config.set('appName',this.appName);
+    this.config.save();
   }
 
   install() {
     this.installDependencies();
+    // TODO : This is really handy, but should be made optional
+    this.spawnCommandSync('git', ['init']);
+    this.spawnCommandSync('git', ['add', '--all']);
+    this.spawnCommandSync('git', ['commit', '-m', 'generator output', '--quiet']);
   }
 };

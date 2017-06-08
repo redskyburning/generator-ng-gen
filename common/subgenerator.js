@@ -25,16 +25,18 @@ module.exports = class Subgenerator extends Generator {
     this.type = type.toLowerCase();
 
     let shortInstances = ['directive','constant'];
+    let camelImports = ['constant'];
     let instanceName = (shortInstances.indexOf(type) === -1) ? `${name} ${type}` : name;
+    let importName = (camelImports.indexOf(type) === -1) ? this.changeCase.pascalCase(`${name} ${type}`) : this.changeCase.camelCase(`${name} ${type}`);
 
     this.names = {
       raw       : name,
       dashed    : this.changeCase.paramCase(name),
       camel     : this.changeCase.camelCase(name),
       pascal    : this.changeCase.pascalCase(name),
-      class     : this.changeCase.pascalCase(name + ' ' + type),
+      class     : importName,
       instance  : this.changeCase.camelCase(instanceName),
-      typePlural: this.pluralize(this.type, 2)
+      typePlural: this.pluralize(this.type, 2),
     };
 
     this.baseDir = this.type === 'controller' ? 'controllers' : 'components';
@@ -46,22 +48,29 @@ module.exports = class Subgenerator extends Generator {
 
     this.routeTarget = this.getTargetString('route');
 
+    let appName = this.config.get('appName') || 'defaultAppName';
+
     this.context = {
       name      : this.names.raw,
       nameDashed: this.names.dashed,
-      namePascal: this.names.pascal
+      nameCamel: this.names.camel,
+      namePascal: this.names.pascal,
+      appNameDashed: this.changeCase.paramCase(appName)
     };
   }
 
-  injectIntoModule() {
+  injectIntoModule(classStyleInstance = false) {
     let target      = this.type;
     let classTarget = `${this.type} import`;
+    let instanceName = (this.type === 'provider') ? `${this.names.camel}Service` : classStyleInstance ? this.names.class : this.names.instance;
+    let className = (this.type === 'provider') ? `${this.names.pascal}ServiceProvider` : this.names.class;
+
 
     let moduleContent = this.fs.read(this.paths.module)
       .replace(this.getTargetString(target),
-        `.${this.type}('${this.names.instance}', ${this.names.class})\n\t${this.getTargetString(target)}`)
+        `.${this.type}('${instanceName}', ${className})\n\t${this.getTargetString(target)}`)
       .replace(this.getTargetString(classTarget),
-        `import {${this.names.class}} from './${this.baseDir}/${this.names.dashed}/${this.names.dashed}.${this.type}';\n${this.getTargetString(classTarget)}`);
+        `import {${className}} from './${this.baseDir}/${this.names.dashed}/${this.names.dashed}.${this.type}';\n${this.getTargetString(classTarget)}`);
 
     this.fs.write(this.paths.module, moduleContent);
   }

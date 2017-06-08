@@ -19,6 +19,11 @@ module.exports = class extends Subgenerator {
       this.context);
 
     this.fs.copyTpl(
+      this.templatePath(`target.${this.type}.spec.js`),
+      this.destinationPath(`${this.paths.prefix}/${this.names.dashed}.${this.type}.spec.js`),
+      this.context);
+
+    this.fs.copyTpl(
       this.templatePath('target.html'),
       this.destinationPath(`${this.paths.prefix}/${this.names.dashed}.html`),
       this.context);
@@ -28,13 +33,13 @@ module.exports = class extends Subgenerator {
       this.destinationPath(`${this.paths.prefix}/${this.names.dashed}.scss`),
       this.context);
 
-    this.injectIntoModule();
+    this.injectIntoModule(true);
 
     let routeContent  = this.fs.read(this.paths.route);
     routeContent = routeContent.replace(this.routeTarget, `.state('main.${this.names.dashed}', {
 			url         : '${this.names.dashed}',
 			templateUrl : 'app/${this.names.typePlural}/${this.names.dashed}/${this.names.dashed}.html',
-			controller  : '${this.names.instance}',
+			controller  : '${this.names.class}',
 			controllerAs: 'vm'
 		})\n\t\t${this.routeTarget}`);
     this.fs.write(this.paths.route, routeContent);
