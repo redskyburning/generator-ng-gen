@@ -15,8 +15,9 @@ import {StyleGuideModalController} from './controllers/style-guide-modal/style-g
 /* directive import injection target */
 /* component import injection target */
 /* filter import injection target */
+/* module import injection target */
 
-angular.module('<%= appNameDashed %>', ['ngAnimate', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ui.router', 'ui.bootstrap'])
+angular.module('<%= appNameDashed %>', ['ngAnimate', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ui.router', 'ui.bootstrap'/* module injection target */])
 	.constant('moment', moment)
 	.config(config)
 	.config(routerConfig)

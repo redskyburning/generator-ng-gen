@@ -37,10 +37,8 @@ module.exports = class extends Subgenerator {
 			}
 		])
 			.then((answers) => {
-				this.log(answers);
 				this.name        = answers.name || this.options.name;
 				this.withRouting = answers.withRouting || this.options.withRouting || false;
-				this.log(this.name,this.withRouting);
 			});
 	}
 
@@ -49,21 +47,27 @@ module.exports = class extends Subgenerator {
 	}
 
 	writing() {
-		/*this.fs.copyTpl(
-		 this.templatePath(`target.${this.type}.js`),
-		 this.destinationPath(`${this.paths.prefix}/${this.names.dashed}.${this.type}.js`),
-		 this.context);
+		this.fs.copyTpl(
+			this.templatePath(`target.${this.type}.js`),
+			this.destinationPath(`${this.paths.prefix}/${this.names.dashed}.${this.type}.js`),
+			Object.assign({},this.context,{withRouting:this.withRouting}));
 
-		 this.fs.copyTpl(
-		 this.templatePath('target.html'),
-		 this.destinationPath(`${this.paths.prefix}/${this.names.dashed}.html`),
-		 this.context);
+		if(this.withRouting){
+			this.fs.copyTpl(
+				this.templatePath(`target.routes.js`),
+				this.destinationPath(`${this.paths.prefix}/${this.names.dashed}.routes.js`),
+				this.context);
+		}
 
-		 this.fs.copyTpl(
-		 this.templatePath('target.scss'),
-		 this.destinationPath(`${this.paths.prefix}/${this.names.dashed}.scss`),
-		 this.context);
+		let target = 'module';
+		let importTarget = 'module import';
 
-		 this.injectIntoModule();*/
+		let moduleContent = this.fs.read(this.paths.module)
+			.replace(this.getTargetString(target),
+				`, '${this.names.dashed}'${this.getTargetString(target)}`)
+			.replace(this.getTargetString(importTarget),
+				`import {} from './${this.baseDir}/${this.names.dashed}/${this.names.dashed}.module';\n${this.getTargetString(importTarget)}`);
+
+		this.fs.write(this.paths.module, moduleContent);
 	}
 };
