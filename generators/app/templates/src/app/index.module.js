@@ -13,6 +13,8 @@ import {StyleGuideModalController} from './controllers/style-guide-modal/style-g
 /* factory import injection target */
 /* provider import injection target */
 /* directive import injection target */
+/* component import injection target */
+/* filter import injection target */
 
 angular.module('<%= appNameDashed %>', ['ngAnimate', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ui.router', 'ui.bootstrap'])
 	.constant('moment', moment)
@@ -24,6 +26,8 @@ angular.module('<%= appNameDashed %>', ['ngAnimate', 'ngTouch', 'ngSanitize', 'n
 	/* factory injection target */
 	/* provider injection target */
 	/* directive injection target */
+	/* component injection target */
+	/* filter injection target */
 	.controller('HomeController', HomeController)
 	.controller('StyleGuideController', StyleGuideController)
 	.controller('StyleGuideModalController', StyleGuideModalController)
