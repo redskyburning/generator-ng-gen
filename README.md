@@ -4,14 +4,6 @@
 
 Based on the excellent (and now unmaintained) [Gulp Angular Generator](https://github.com/Swiip/generator-gulp-angular), Ng-Gen generates AngularJS apps as well as essential angular building blocks like components and services.
 
-## Features
-
-* ES6 Angular transpiled with Babel.
-* Sass styles with configurable Bootstrap, Autoprefixer and built-in style guide.
-* [UI-Router](https://github.com/angular-ui/ui-router) routing and [UI-Bootstrap](https://angular-ui.github.io/bootstrap/) directives.
-* Gulp build system.
-* Testing with Karma, Jasmine and Protractor.
-
 ## Usage
 
 More informations, options, parameters in the [usage documentation page](docs/usage.md)
