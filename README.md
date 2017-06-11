@@ -2,7 +2,15 @@
 
 ## An opinionated ES6 AngularJS Yeoman Generator with Gulp
 
+Based on the excellent (and now unmaintained) [Gulp Angular Generator](https://github.com/Swiip/generator-gulp-angular), Ng-Gen generates AngularJS apps as well as essential angular building blocks like components and services.
 
+## Features
+
+* ES6 Angular transpiled with Babel.
+* Sass styles with configurable Bootstrap, Autoprefixer and built-in style guide.
+* [UI-Router](https://github.com/angular-ui/ui-router) routing and [UI-Bootstrap](https://angular-ui.github.io/bootstrap/) directives.
+* Gulp build system.
+* Testing with Karma, Jasmine and Protractor.
 
 ## Usage
 
@@ -23,13 +31,9 @@ npm install -g generator-ng-gen
 
 ### Run
 
-##### Create a new directory, and go into:
+##### Create a new directory, go into and run:
 ```
 mkdir my-new-project && cd $_
-```
-
-##### Run `yo ng-gen`, and select desired technologies:
-```
 yo ng-gen
 ```
 
@@ -44,9 +48,6 @@ yo ng-gen
 
 ![Logo](docs/assets/gulp.png)
 ![Logo](docs/assets/angular.png)
-![Logo](docs/assets/bootstrap.png)
-![Logo](docs/assets/materialdesign.png)
-![Logo](docs/assets/foundation.png)
 ![Logo](docs/assets/bower.png)
 ![Logo](docs/assets/webpack.png)
 ![Logo](docs/assets/karma.png)
@@ -56,32 +57,9 @@ yo ng-gen
 ![Logo](docs/assets/protractor.png)
 
 ![Logo](docs/assets/babel.png)
-![Logo](docs/assets/coffeescript.png)
-![Logo](docs/assets/typescript.png)
-![Logo](docs/assets/traceur.png)
 ![Logo](docs/assets/sass.png)
-![Logo](docs/assets/less.png)
-![Logo](docs/assets/stylus.png)
-![Logo](docs/assets/jade.png)
-![Logo](docs/assets/haml.png)
-![Logo](docs/assets/handlebars.png)
 
 [List features included](docs/usage.md#features-included-in-the-gulpfile)
-
-
-## Questions the generator will ask
-
-[Questions the generator will ask](docs/usage.md#questions-the-generator-will-ask)
-
-
-## Changelog
-
-[All changes listed in the GitHub releases](https://github.com/Swiip/generator-ng-gen/releases)
-
-
-## Contributing
-
-[Guidelines](CONTRIBUTING.md)
 
 
 ## License
