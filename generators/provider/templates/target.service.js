@@ -1,6 +1,8 @@
 export class <%= namePascal %>Service {
-	constructor(config = {},$log) {
-		this.$log = $log;
+	constructor(config = {}, $log) {
+		'ngInject';
+
+		this.$log   = $log;
 		this.config = config;
 	}
 }
