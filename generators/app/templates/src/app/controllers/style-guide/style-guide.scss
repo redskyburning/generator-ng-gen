@@ -8,7 +8,7 @@
 	}
 
 	&__section {
-		border:1px solid $gray-lighter;
+		border:1px solid $gray-light;
 		padding:$site-gutter;
 
 		&__title, &__subtitle {
@@ -23,6 +23,11 @@
 
 		&__title {
 			margin-top:0;
+			border-width: 2px;
+		}
+
+		&__content {
+
 		}
 
 		$section:&;
