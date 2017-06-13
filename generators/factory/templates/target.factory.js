@@ -1,19 +1,23 @@
-export function <%= namePascal %>Factory() {
-  let publicVar = 'public';
-  let privateVar = 'private';
+export function <%= namePascal %>Factory($log) {
+	'ngInject';
 
-  return {
-    publicVar : publicVar,
-    getPrivateVar : getPrivateVar,
-    setPrivateVar : setPrivateVar
-  };
+	this.$log = $log;
 
-  function getPrivateVar() {
-    return privateVar;
-  }
+	let publicVar  = 'public';
+	let privateVar = 'private';
 
-  function setPrivateVar(value) {
-    privateVar = value;
-    return this;
-  }
+	return {
+		publicVar    : publicVar,
+		getPrivateVar: getPrivateVar,
+		setPrivateVar: setPrivateVar
+	};
+
+	function getPrivateVar() {
+		return privateVar;
+	}
+
+	function setPrivateVar(value) {
+		privateVar = value;
+		return this;
+	}
 }
