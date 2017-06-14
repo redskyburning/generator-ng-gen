@@ -1,11 +1,13 @@
-/* global malarkey:false, moment:false */
+/* global moment:false */
 
 import {config} from './index.config';
 import {routerConfig} from './index.route';
 import {runBlock} from './index.run';
-import {MainController} from './main/main.controller';
+import {MainController} from './controllers/main/main.controller';
 import {HomeController} from './controllers/home/home.controller';
 /* constant import injection target */
+import {StyleGuideController} from './controllers/style-guide/style-guide.controller';
+import {StyleGuideModalController} from './controllers/style-guide-modal/style-guide-modal.controller';
 /* controller import injection target */
 /* service import injection target */
 /* factory import injection target */
@@ -13,7 +15,6 @@ import {HomeController} from './controllers/home/home.controller';
 /* directive import injection target */
 
 angular.module('<%= appNameDashed %>', ['ngAnimate', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ui.router', 'ui.bootstrap'])
-	.constant('malarkey', malarkey)
 	.constant('moment', moment)
 	.config(config)
 	.config(routerConfig)
@@ -24,5 +25,7 @@ angular.module('<%= appNameDashed %>', ['ngAnimate', 'ngTouch', 'ngSanitize', 'n
 	/* provider injection target */
 	/* directive injection target */
 	.controller('HomeController', HomeController)
+	.controller('StyleGuideController', StyleGuideController)
+	.controller('StyleGuideModalController', StyleGuideModalController)
 	/* controller injection target */
 	.controller('MainController', MainController);

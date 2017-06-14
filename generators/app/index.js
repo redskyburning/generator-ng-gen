@@ -36,6 +36,8 @@ module.exports = class extends Generator {
       'index.config.js',
       'index.module.js',
       'index.html',
+      'home.controller.spec.js',
+      'main.controller.spec.js',
       'build.js'
     ];
 

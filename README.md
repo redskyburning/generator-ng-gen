@@ -1,36 +1,60 @@
 # generator-ng-gen [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
 > 
 
-## Installation
+## An opinionated ES6 AngularJS Yeoman Generator with Gulp
 
-First, install [Yeoman](http://yeoman.io) and generator-ng-gen using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+Based on the excellent (and now unmaintained) [Gulp Angular Generator](https://github.com/Swiip/generator-gulp-angular), Ng-Gen generates AngularJS apps as well as essential angular building blocks like components and services.
 
-```bash
-npm install -g yo
+## Usage
+
+More informations, options, parameters in the [usage documentation page](docs/usage.md)
+
+### Install
+
+##### Install required tools `yo`, `gulp` and `bower`:
+```
+npm install -g yo gulp bower
+```
+
+##### Install `generator-ng-gen`:
+```
 npm install -g generator-ng-gen
 ```
 
-Then generate your new project:
 
-```bash
+### Run
+
+##### Create a new directory, go into and run:
+```
+mkdir my-new-project && cd $_
 yo ng-gen
 ```
 
-## Getting To Know Yeoman
+## Documentation
 
- * Yeoman has a heart of gold.
- * Yeoman is a person with feelings and opinions, but is very easy to work with.
- * Yeoman can be too opinionated at times but is easily convinced not to be.
- * Feel free to [learn more about Yeoman](http://yeoman.io/).
+* [docs/README](docs/README.md)
+* More informations about how to use your new project is available in the [docs/user-guide](docs/user-guide.md)
+* If you want to know: [docs/how-it-works](docs/how-it-works.md).
+
+
+## Features
+
+![Logo](docs/assets/gulp.png)
+![Logo](docs/assets/angular.png)
+![Logo](docs/assets/bower.png)
+![Logo](docs/assets/webpack.png)
+![Logo](docs/assets/karma.png)
+![Logo](docs/assets/istanbul.png)
+![Logo](docs/assets/browsersync.png)
+![Logo](docs/assets/jasmine.png)
+![Logo](docs/assets/protractor.png)
+
+![Logo](docs/assets/babel.png)
+![Logo](docs/assets/sass.png)
+
+[List features included](docs/usage.md#features-included-in-the-gulpfile)
+
 
 ## License
 
-Apache-2.0 © [Ben Webb]()
-
-
-[npm-image]: https://badge.fury.io/js/generator-ng-gen.svg
-[npm-url]: https://npmjs.org/package/generator-ng-gen
-[travis-image]: https://travis-ci.org/redskyburning/generator-ng-gen.svg?branch=master
-[travis-url]: https://travis-ci.org/redskyburning/generator-ng-gen
-[daviddm-image]: https://david-dm.org/redskyburning/generator-ng-gen.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/redskyburning/generator-ng-gen
+MIT
