@@ -6,8 +6,10 @@ import {runBlock} from './index.run';
 import {MainController} from './controllers/main/main.controller';
 import {HomeController} from './controllers/home/home.controller';
 /* constant import injection target */
+/* model import injection target */
 import {StyleGuideController} from './controllers/style-guide/style-guide.controller';
 import {StyleGuideModalController} from './controllers/style-guide-modal/style-guide-modal.controller';
+import {ErrorController} from './controllers/error/error.controller';
 /* controller import injection target */
 /* service import injection target */
 /* factory import injection target */
@@ -20,6 +22,7 @@ angular.module('<%= appNameDashed %>', ['ngAnimate', 'ngTouch', 'ngSanitize', 'n
 	.config(routerConfig)
 	.run(runBlock)
 	/* constant injection target */
+	/* model injection target */
 	/* service injection target */
 	/* factory injection target */
 	/* provider injection target */
@@ -27,5 +30,6 @@ angular.module('<%= appNameDashed %>', ['ngAnimate', 'ngTouch', 'ngSanitize', 'n
 	.controller('HomeController', HomeController)
 	.controller('StyleGuideController', StyleGuideController)
 	.controller('StyleGuideModalController', StyleGuideModalController)
+	.controller('ErrorController', ErrorController)
 	/* controller injection target */
 	.controller('MainController', MainController);
