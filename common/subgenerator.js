@@ -57,6 +57,7 @@ module.exports = class Subgenerator extends Generator {
 			namePascal   : this.names.pascal,
 			appNameDashed: this.changeCase.paramCase(appName),
 			nameInstance : this.names.instance,
+			nameImport   : this.names.class,
 			nameClass    : this.names.class
 		};
 	}
