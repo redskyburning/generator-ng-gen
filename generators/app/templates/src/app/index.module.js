@@ -15,8 +15,11 @@ import {ErrorController} from './controllers/error/error.controller';
 /* factory import injection target */
 /* provider import injection target */
 /* directive import injection target */
+/* component import injection target */
+/* filter import injection target */
+/* module import injection target */
 
-angular.module('<%= appNameDashed %>', ['ngAnimate', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ui.router', 'ui.bootstrap'])
+angular.module('<%= appNameDashed %>', ['ngAnimate', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ui.router', 'ui.bootstrap'/* module injection target */])
 	.constant('moment', moment)
 	.config(config)
 	.config(routerConfig)
@@ -27,6 +30,8 @@ angular.module('<%= appNameDashed %>', ['ngAnimate', 'ngTouch', 'ngSanitize', 'n
 	/* factory injection target */
 	/* provider injection target */
 	/* directive injection target */
+	/* component injection target */
+	/* filter injection target */
 	.controller('HomeController', HomeController)
 	.controller('StyleGuideController', StyleGuideController)
 	.controller('StyleGuideModalController', StyleGuideModalController)

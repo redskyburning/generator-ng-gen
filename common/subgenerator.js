@@ -24,8 +24,8 @@ module.exports = class Subgenerator extends Generator {
 	init(name, type) {
 		this.type = type.toLowerCase();
 
-		let shortInstances = ['directive', 'constant'];
-		let camelImports   = ['constant'];
+		let shortInstances = ['directive', 'component', 'constant', 'filter'];
+		let camelImports   = ['constant', 'filter'];
 		let instanceName   = (shortInstances.indexOf(type) === -1) ? `${name} ${type}` : name;
 		let importName     = (camelImports.indexOf(type) === -1) ? this.changeCase.pascalCase(`${name} ${type}`) : this.changeCase.camelCase(`${name} ${type}`);
 
