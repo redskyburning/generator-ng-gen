@@ -55,9 +55,9 @@ module.exports = class Subgenerator extends Generator {
 			nameDashed   : this.names.dashed,
 			nameCamel    : this.names.camel,
 			namePascal   : this.names.pascal,
+			appNameDashed: this.changeCase.paramCase(appName),
 			nameInstance : this.names.instance,
-			nameImport   : this.names.class,
-			appNameDashed: this.changeCase.paramCase(appName)
+			nameClass    : this.names.class
 		};
 	}
 
@@ -66,11 +66,11 @@ module.exports = class Subgenerator extends Generator {
 		let classTarget  = `${this.type} import`;
 		let instanceName = (this.type === 'provider') ? `${this.names.camel}Service` : classStyleInstance ? this.names.class : this.names.instance;
 		let className    = (this.type === 'provider') ? `${this.names.pascal}ServiceProvider` : this.names.class;
-
+		let type         = (this.type === 'model') ? 'constant' : this.type;
 
 		let moduleContent = this.fs.read(this.paths.module)
 			.replace(this.getTargetString(target),
-				`.${this.type}('${instanceName}', ${className})\n\t${this.getTargetString(target)}`)
+				`.${type}('${instanceName}', ${className})\n\t${this.getTargetString(target)}`)
 			.replace(this.getTargetString(classTarget),
 				`import {${className}} from './${this.baseDir}/${this.names.dashed}/${this.names.dashed}.${this.type}';\n${this.getTargetString(classTarget)}`);
 
