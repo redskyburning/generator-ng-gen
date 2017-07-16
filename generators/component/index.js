@@ -9,7 +9,7 @@ module.exports = class extends Subgenerator {
 
 	prompting() {
 		this.argument('name', {type: String, required: true});
-		this.init(this.options.name, 'directive');
+		this.init(this.options.name,'component');
 	}
 
 	writing() {
