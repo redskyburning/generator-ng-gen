@@ -1,5 +1,4 @@
-# generator-ng-gen [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
-> 
+# generator-ng-gen
 
 ## An opinionated ES6 AngularJS Yeoman Generator with Gulp
 
@@ -7,7 +6,7 @@ Based on the excellent (and now unmaintained) [Gulp Angular Generator](https://g
 
 ## Usage
 
-More informations, options, parameters in the [usage documentation page](docs/usage.md)
+More information, options, parameters in the [usage documentation page](docs/usage.md)
 
 ### Install
 
@@ -24,11 +23,23 @@ npm install -g generator-ng-gen
 
 ### Run
 
-##### Create a new directory, go into and run:
+##### Create your base app
 ```
 mkdir my-new-project && cd $_
 yo ng-gen
 ```
+##### Try out some subgenerators
+```
+yo ng-gen:controller my-controller
+yo ng-gen:service my-service
+yo ng-gen:component my-component
+```
+Subgenerator documentation on the [usage documentation page](docs/usage.md)
+##### Serve your app
+```
+gulp serve
+```
+
 
 ## Documentation
 
