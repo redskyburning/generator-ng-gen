@@ -34,7 +34,6 @@ yo ng-gen:controller my-controller
 yo ng-gen:service my-service
 yo ng-gen:component my-component
 ```
-Subgenerator documentation on the 
 ##### Serve your app
 ```
 gulp serve
