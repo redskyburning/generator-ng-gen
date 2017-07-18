@@ -1,6 +1,6 @@
 {
   "name": "generator-ng-gen",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "An opinionated, ES6 AngularJS generator using Sass, Gulp, UI-Router and UI-Bootstrap. Includes sub-generators for all the usual AngularJS building blocks.",
   "homepage": "https://github.com/redskyburning/generator-ng-gen",
   "author": {
