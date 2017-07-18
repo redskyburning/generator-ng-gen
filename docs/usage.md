@@ -22,6 +22,18 @@ Run `yo ng-gen`, optionally passing an app name:
 yo ng-gen [app-name]
 ```
 
+## Subgenerators
+
+* `yo ng-gen:component [component-name]` - Create a component.
+* `yo ng-gen:constant [constant-name]` - Create a constant.
+* `yo ng-gen:controller [controller-name]` - Create a controller.
+* `yo ng-gen:directive [directive-name]` - Create a directive. Included for completeness's sake. Just use a component. Seriously, put down the directive.
+* `yo ng-gen:factory [factory-name]` - Create a factory.
+* `yo ng-gen:filter [filter-name]` - Create a filter.
+* `yo ng-gen:model [model-name]` - Create a model, aka a class wrapped in an injectable constant.
+* `yo ng-gen:provider [provider-name]` - Create a provider.
+* `yo ng-gen:service [service-name]` - Create a service.
+
 ## Use Gulp tasks
 
 * `gulp` or `gulp build` to build an optimized version of your application in `/dist`
