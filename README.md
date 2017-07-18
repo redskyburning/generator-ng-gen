@@ -28,13 +28,13 @@ npm install -g generator-ng-gen
 mkdir my-new-project && cd $_
 yo ng-gen
 ```
-##### Try out some subgenerators
+##### Try out some subgenerators ([Subgenerator Usage](docs/usage.md))
 ```
 yo ng-gen:controller my-controller
 yo ng-gen:service my-service
 yo ng-gen:component my-component
 ```
-Subgenerator documentation on the [usage documentation page](docs/usage.md)
+Subgenerator documentation on the 
 ##### Serve your app
 ```
 gulp serve
