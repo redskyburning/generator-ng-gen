@@ -21,8 +21,9 @@ module.exports = class Subgenerator extends Generator {
 		return `/* ${name} injection target */`;
 	}
 
-	init(name, type) {
+	init(name, type, parent = false) {
 		this.type = type.toLowerCase();
+		this.parent = parent;
 
 		let shortInstances = ['directive', 'component', 'constant', 'filter'];
 		let camelImports   = ['constant', 'filter'];
@@ -37,9 +38,15 @@ module.exports = class Subgenerator extends Generator {
 			class     : importName,
 			instance  : this.changeCase.camelCase(instanceName),
 			typePlural: this.pluralize(this.type, 2),
+			parentDashed: this.changeCase.paramCase(this.parent)
 		};
 
-		this.baseDir = this.type === 'controller' ? 'controllers' : 'components';
+		this.isController = this.type === 'controller';
+		this.baseDir     = this.isController ? 'controllers' : 'components';
+
+		if (this.isController && this.parent) {
+			this.baseDir = `${this.baseDir}/${this.names.parentDashed}`;
+		}
 
 		this.paths.app    = 'src/app';
 		this.paths.module = `${this.paths.app}/index.module.js`;

@@ -9,7 +9,8 @@ module.exports = class extends Subgenerator {
 
   prompting() {
     this.argument('name', {type: String, required: true});
-    this.init(this.options.name,'controller');
+    this.option('parent', { default:false, type:String });
+    this.init(this.options.name,'controller',this.options.parent);
   }
 
   writing() {
@@ -36,9 +37,11 @@ module.exports = class extends Subgenerator {
     this.injectIntoModule(true);
 
     let routeContent  = this.fs.read(this.paths.route);
-    routeContent = routeContent.replace(this.routeTarget, `.state('main.${this.names.dashed}', {
+    let routeName = this.parent ? `main.${this.names.parentDashed}.${this.names.dashed}` : `main.${this.names.dashed}`;
+    let templateBase = this.parent ? `app/${this.names.typePlural}/${this.names.parentDashed}` : `app/${this.names.typePlural}`;
+    routeContent = routeContent.replace(this.routeTarget, `.state('${routeName}', {
 			url         : '${this.names.dashed}',
-			templateUrl : 'app/${this.names.typePlural}/${this.names.dashed}/${this.names.dashed}.html',
+			templateUrl : '${templateBase}/${this.names.dashed}/${this.names.dashed}.html',
 			controller  : '${this.names.class}',
 			controllerAs: 'vm'
 		})\n\t\t${this.routeTarget}`);
