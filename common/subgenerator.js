@@ -23,7 +23,7 @@ module.exports = class Subgenerator extends Generator {
 
 	init(name, type, parent = false) {
 		this.type = type.toLowerCase();
-		this.parent = parent;
+		this.parent = parent === 'false' ? false : parent;
 
 		let shortInstances = ['directive', 'component', 'constant', 'filter'];
 		let camelImports   = ['constant', 'filter'];
